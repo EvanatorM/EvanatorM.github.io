@@ -10,7 +10,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: ['14.17.6']
+        node-version: ['20.15.0']
 
     steps:
       - uses: actions/checkout@v3
@@ -22,7 +22,7 @@ jobs:
           cache: 'npm'
 
       - name: Install packages
-        run: npm install
+        run: npm ci
 
       - name: Run npm build
         run: npm run build
