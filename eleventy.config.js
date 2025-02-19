@@ -14,4 +14,5 @@ export default function (eleventyConfig) {
 	});
 
 	eleventyConfig.addPassthroughCopy("src/globalStyles.css");
+	eleventyConfig.addPassthroughCopy("src/logo.svg");
 }

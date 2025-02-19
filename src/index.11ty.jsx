@@ -8,7 +8,10 @@ export const data = {
 export default function (data) {
     return (
         <>
-            <h1>Welcome to WillowVox Engine</h1>
+            <div id="coming-soon">
+                <img src="logo.svg" alt="Logo" />
+                <h1>Coming Soon</h1>
+            </div>
         </>
     );
 };

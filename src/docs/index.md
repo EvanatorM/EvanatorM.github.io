@@ -1,7 +1,7 @@
 ---
 layout: docLayout.njk
-title: Test Doc 1
+title: Coming Soon
 ---
 
 # {{ title }}
-Hi
+Coming Soon
