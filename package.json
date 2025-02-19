@@ -2,14 +2,19 @@
   "name": "evanatorm.github.io",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "build": "npx @11ty/eleventy"
+    "build": "npx @11ty/eleventy --input=src --formats=html,md,11ty.jsx",
+    "debug": "npx @11ty/eleventy --serve --input=src --formats=html,md,11ty.jsx,jsx"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "@11ty/eleventy": "^3.0.0"
+    "@11ty/eleventy": "^3.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tsx": "^4.19.2"
   }
 }
