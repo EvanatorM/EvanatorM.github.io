@@ -38,4 +38,5 @@ export default function (eleventyConfig) {
 	eleventyConfig.addPassthroughCopy("src/img/logo.svg");
 	eleventyConfig.addPassthroughCopy("src/img/logo-voxel.svg");
 	eleventyConfig.addPassthroughCopy("src/scripts/prism.js");
+	eleventyConfig.addPassthroughCopy("CNAME");
 }
