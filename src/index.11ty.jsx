@@ -10,7 +10,8 @@ export default function (data) {
         <>
             <div id="coming-soon">
                 <img src="/img/logo.svg" alt="Logo" />
-                <h1>Coming Soon</h1>
+                <h1><span>Coming Soon</span>
+                <span><a href="/docs">Visit the Docs</a></span></h1>
             </div>
         </>
     );

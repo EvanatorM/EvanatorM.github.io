@@ -13,6 +13,26 @@ h1 {
     font-size: 6rem;
 }
 
+h1 a {
+    margin: 0;
+    color: #fff;
+    text-decoration: none;
+    transition: .25s;
+    margin: 0;
+    font-size: 5rem;
+}
+
+a:hover {
+    background-image: linear-gradient(to right, rgb(26, 34, 139), rgb(124, 31, 124));
+    color: transparent;
+    background-clip: text;
+    transition: .25s;
+}
+
+span {
+    display: block;
+}
+
 @media only screen and (max-width: 600px) {
     h1 {
         font-size: 4rem;
