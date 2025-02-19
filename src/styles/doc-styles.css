@@ -1,7 +1,97 @@
-p {
+/* Global */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+}
+
+
+/* Header */
+header {
+    position: fixed;
+    width: 100%;
+    background-color: #aaa;
+    top: 0%;
+    left: 0%;
+}
+
+header h1, h2 {
+    color: white;
+    margin: 5px 0 5px 10px;
+    display: inline-block;
+}
+
+header a {
+    color: white;
+    text-decoration: none;
+}
+
+header ul {
+    display: inline-block;
+}
+
+header li {
+    display: inline-block;
+}
+
+
+/* Site Sidebar */
+#site-nav li.current {
+    background-color: #aaa;
+}
+
+#site-nav a {
+    text-decoration: none;
+    color: black;
+}
+
+#site-nav {
+    position: sticky;
+    top: 5%;
+    overflow: auto;
+    height: fit-content;
+    max-height: 90vh;
+    grid-column-start: site-nav;
+}
+
+
+/* Page Sidebar */
+#page-nav {
+    position: sticky;
+    top: 5%;
+    overflow: auto;
+    height: fit-content;
+    max-height: 90vh;
+    grid-column-start: page-nav;
+}
+
+
+/* Main */
+main p {
     font-size: 18px;
 }
 
-h1 {
-    font-weight: normal;
+main {
+    grid-column-start: main;
+}
+
+#page {
+    margin-top: 50px;
+    min-height: calc(90vh - 50px);
+    display: grid;
+    grid-template-columns: [site-nav] 1fr 20px [main] 4fr 20px [page-nav] 1fr;
+}
+
+
+/* Footer */
+footer p {
+    font-size: 16px;
+}
+
+footer {
+    text-align: center;
+}
+
+
+/* Other */
+.debug-border {
+    border: 1px solid red;
 }

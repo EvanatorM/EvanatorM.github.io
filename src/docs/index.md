@@ -1,10 +1,13 @@
 ---
+tags: doc
 layout: doc-layout.njk
-title: Coming Soon
+title: Docs Home
+date: git Last Modified
+eleventyNavigation:
+  key: Docs Home
 ---
 
-# {{ title }}
-Coming Soon
+# Welcome to the docs!
 
 ```cpp
 int main()
