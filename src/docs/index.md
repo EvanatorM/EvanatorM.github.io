@@ -5,6 +5,7 @@ title: Docs Home
 date: git Last Modified
 eleventyNavigation:
   key: Docs Home
+  order: -1
 ---
 
 # Welcome to the docs!

@@ -3,25 +3,39 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: normal;
 }
 
+html {
+    background-color: #242527;
+    color: #eee;
+}
+
 
 /* Header */
 header {
     position: fixed;
     width: 100%;
-    background-color: #aaa;
+    background-color: #2276aa;
     top: 0%;
     left: 0%;
+    display: flex;
+    align-items: center;
 }
 
 header h1, h2 {
     color: white;
     margin: 5px 0 5px 10px;
     display: inline-block;
+
 }
 
 header a {
     color: white;
     text-decoration: none;
+}
+
+#home-link {
+    display: flex;
+    align-items: center;
+    margin: 10px 20px 10px 20px;
 }
 
 header ul {
@@ -35,34 +49,69 @@ header li {
 
 /* Site Sidebar */
 #site-nav .current {
-    background-color: #aaa;
+    background-color: #0d4466;
 }
 
 #site-nav a {
     text-decoration: none;
-    color: black;
+    color: #71b2da;
+}
+
+#site-nav div:hover {
+    transition: .25s;
+}
+
+#site-nav div:hover {
+    background-color: #0d4466aa;
+    transition: .25s;
 }
 
 #site-nav {
     position: sticky;
-    top: 5%;
+    top: 8%;
     overflow: auto;
     height: fit-content;
     max-height: 90vh;
     grid-column-start: site-nav;
 }
 
+#site-nav ul {
+    list-style-type: none;
+}
+
 
 /* Page Sidebar */
 #page-nav {
     position: sticky;
-    top: 5%;
+    top: 8%;
     overflow: auto;
     height: fit-content;
     max-height: 90vh;
     grid-column-start: page-nav;
 }
 
+#page-nav ol {
+    margin-left: -20px;
+    margin-top: 5px;
+}
+
+#page-nav li {
+    color: #aaa;
+    margin-bottom: 5px;
+}
+
+#page-nav a {
+    color: #eee;
+    text-decoration: none;
+}
+
+#page-nav a:hover {
+    color: #fff;
+}
+
+#page-nav h4 {
+    border-bottom: 1px solid #555;
+}
 
 /* Main */
 main p {
@@ -74,7 +123,7 @@ main {
 }
 
 #page {
-    margin-top: 50px;
+    margin-top: 70px;
     min-height: calc(90vh - 50px);
     display: grid;
     grid-template-columns: [site-nav] 1fr 20px [main] 4fr 20px [page-nav] 1fr;
