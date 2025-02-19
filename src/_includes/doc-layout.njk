@@ -27,8 +27,8 @@ title: Docs
         <div id="site-nav">
             {% set navPages = collections.all | eleventyNavigation %}
             {% macro renderNavListItem(entry) -%}
-            <li{% if entry.url == page.url %} class="current"{% endif %}>
-            <a href="{{ entry.url }}">{{ entry.title }}</a>
+            <li>
+            <div {% if entry.url == page.url %} class="current"{% endif %}><a  href="{{ entry.url }}">{{ entry.title }}</a></div>
             {%- if entry.children.length -%}
             <ul>
                 {%- for child in entry.children %}{{ renderNavListItem(child) }}{% endfor -%}

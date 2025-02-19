@@ -34,7 +34,7 @@ header li {
 
 
 /* Site Sidebar */
-#site-nav li.current {
+#site-nav .current {
     background-color: #aaa;
 }
 
