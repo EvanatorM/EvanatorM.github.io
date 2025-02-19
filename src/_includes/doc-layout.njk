@@ -1,0 +1,56 @@
+---
+title: Docs
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="/styles/global-styles.css">
+    <link rel="stylesheet" href="/styles/doc-styles.css">
+    <link rel="stylesheet" href="/styles/code-styles.css">
+    <link rel="icon" type="image/x-icon" href="/img/logo-voxel.svg">
+</head>
+<body>
+    <header>
+        <h1><a href="/">WillowVox Engine</a></h2>
+        <h2>
+        {% set headerPages = collections.all | eleventyNavigationBreadcrumb(title) %}
+        {%- for p in headerPages -%}
+            <a href="{{p.url}}">{{p.title}}</a> &gt;&nbsp;
+        {%- endfor -%}
+         {{title}}</h2>
+    </header>
+    <div id="page">
+        <div id="site-nav">
+            {% set navPages = collections.all | eleventyNavigation %}
+            {% macro renderNavListItem(entry) -%}
+            <li>
+            <div {% if entry.url == page.url %} class="current"{% endif %}><a  href="{{ entry.url }}">{{ entry.title }}</a></div>
+            {%- if entry.children.length -%}
+            <ul>
+                {%- for child in entry.children %}{{ renderNavListItem(child) }}{% endfor -%}
+            </ul>
+            {%- endif -%}
+            </li>
+            {%- endmacro %}
+
+            <ul>
+            {%- for entry in navPages %}{{ renderNavListItem(entry) }}{%- endfor -%}
+            </ul>
+        </div>
+        <main>
+            {{ content | safe }}
+        </main>
+        <div id="page-nav">
+            {{ content | toc | safe }}
+        </div>
+    </div>
+    <footer>
+        <p>Last modified: {{ page.date.toLocaleDateString() }}</p>
+    </footer>
+    <script src="/scripts/prism.js"></script>
+</body>
+</html>
