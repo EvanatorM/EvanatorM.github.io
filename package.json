@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "build": "npx @11ty/eleventy --input=src --formats=html,md,11ty.jsx",
-    "debug": "npx @11ty/eleventy --serve --input=src --formats=html,md,11ty.jsx,jsx"
+    "debug": "npx @11ty/eleventy --serve --input=src --formats=html,md,11ty.jsx"
   },
   "keywords": [],
   "author": "",
