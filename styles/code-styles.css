@@ -1,27 +1,29 @@
 pre {
-    background-color: #151516;
-    font-size: 14px;
-    padding: 10px;
-    width: fit-content;
-    min-width: 30%;
-    max-width: 90%;
-    max-height: 500px;
-    border-radius: 10px;
-    overflow: auto;
+  background-color: #151516;
+  font-size: 14px;
+  padding: 10px;
+  width: fit-content;
+  min-width: 30%;
+  max-width: 90%;
+  max-height: 500px;
+  border-radius: 10px;
+  overflow: auto;
 }
 
 .keyword {
-    color: #ff6ff3;
+  color: #ff6ff3;
 }
 
 .function {
-    color: #fff4b5;
+  color: #fff4b5;
 }
 
 .number {
-    color: #e3ffc2;
+  color: #e3ffc2;
 }
 
 .keyword-int {
-    color: #7979ff;
+  color: #7979ff;
 }
+
+/*# sourceMappingURL=code-styles.css.map */

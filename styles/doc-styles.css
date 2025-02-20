@@ -1,175 +1,172 @@
+/* SCSS HEX */
 /* Global */
 h1, h2, h3, h4, h5, h6 {
-    font-weight: normal;
-    border-bottom: 1px solid #3f484d;
-    margin-bottom: 0;
-    margin-top: 20px;
-    margin-left: 0;
-    padding: 0;
+  font-weight: normal;
 }
 
 :target {
-    scroll-margin-top: 80px;
+  scroll-margin-top: 80px;
 }
 
 html {
-    background-color: #242527;
-    color: #eee;
-    scroll-behavior: smooth;
+  background-color: #242527;
+  color: #eee;
+  scroll-behavior: smooth;
 }
-
 
 /* Header */
 header {
-    position: fixed;
-    width: 100%;
-    background-color: #2276aa;
-    top: 0%;
-    left: 0%;
-    display: flex;
-    align-items: center;
+  position: fixed;
+  width: 100%;
+  background-color: #2276aa;
+  top: 0%;
+  left: 0%;
+  display: flex;
+  align-items: center;
 }
 
 header h1, header h2 {
-    color: white;
-    margin: 5px 0 5px 10px;
-    display: inline-block;
-
+  color: white;
+  margin: 5px 0 5px 10px;
+  display: inline-block;
 }
 
 header a {
-    color: white;
-    text-decoration: none;
+  color: white;
+  text-decoration: none;
 }
 
 #home-link {
-    display: flex;
-    align-items: center;
-    margin: 10px 20px 10px 20px;
+  display: flex;
+  align-items: center;
+  margin: 10px 20px 10px 20px;
 }
 
 header ul {
-    display: inline-block;
+  display: inline-block;
 }
 
 header li {
-    display: inline-block;
+  display: inline-block;
 }
-
 
 /* Page */
 #page {
-    margin-top: 70px;
-    min-height: calc(90vh - 50px);
-    display: grid;
-    grid-template-columns: 1fr [site-nav] 1fr 20px [main] 4fr 20px [page-nav] 1fr 1fr;
+  margin-top: 70px;
+  min-height: calc(90vh - 50px);
+  display: grid;
+  grid-template-columns: 1fr [site-nav] 1fr 20px [main] 4fr 20px [page-nav] 1fr 1fr;
 }
 
 @media only screen and (max-width: 600px) {
-    #page {
-        margin-top: 70px;
-        min-height: calc(90vh - 50px);
-        display: block;
-    }
+  #page {
+    margin-top: 70px;
+    min-height: calc(90vh - 50px);
+    display: block;
+  }
 }
-
 @media only screen and (max-width: 1300px) {
-    #page {
-        margin-top: 70px;
-        min-height: calc(90vh - 50px);
-        display: grid;
-        grid-template-columns: [site-nav] 1fr 20px [main] 4fr 20px [page-nav] 1fr;
-    }
+  #page {
+    margin-top: 70px;
+    min-height: calc(90vh - 50px);
+    display: grid;
+    grid-template-columns: [site-nav] 1fr 20px [main] 4fr 20px [page-nav] 1fr;
+  }
 }
-
-
 /* Site Sidebar */
 #site-nav .current {
-    background-color: #0d4466;
+  background-color: #0d4466;
 }
 
 #site-nav a {
-    text-decoration: none;
-    color: #71b2da;
+  text-decoration: none;
+  color: #71b2da;
 }
 
 #site-nav div:hover {
-    transition: .25s;
+  transition: 0.25s;
 }
 
 #site-nav div:hover {
-    background-color: #0d4466aa;
-    transition: .25s;
+  background-color: rgba(13, 68, 102, 0.6666666667);
+  transition: 0.25s;
 }
 
 #site-nav {
-    position: sticky;
-    top: 8%;
-    overflow: auto;
-    height: fit-content;
-    max-height: 90vh;
-    grid-column-start: site-nav;
+  position: sticky;
+  top: 8%;
+  overflow: auto;
+  height: fit-content;
+  max-height: 90vh;
+  grid-column-start: site-nav;
 }
 
 #site-nav ul {
-    list-style-type: none;
+  list-style-type: none;
 }
-
 
 /* Page Sidebar */
 #page-nav {
-    position: sticky;
-    top: 8%;
-    overflow: auto;
-    height: fit-content;
-    max-height: 90vh;
-    grid-column-start: page-nav;
+  position: sticky;
+  top: 8%;
+  overflow: auto;
+  height: fit-content;
+  max-height: 90vh;
+  grid-column-start: page-nav;
 }
 
 #page-nav ol {
-    margin-left: -20px;
-    margin-top: 5px;
+  margin-left: -20px;
+  margin-top: 5px;
 }
 
 #page-nav li {
-    color: #aaa;
-    margin-bottom: 5px;
+  color: #aaa;
+  margin-bottom: 5px;
 }
 
 #page-nav a {
-    color: #eee;
-    text-decoration: none;
+  color: #eee;
+  text-decoration: none;
 }
 
 #page-nav a:hover {
-    color: #fff;
+  color: #fff;
 }
 
 #page-nav h4 {
-    border-bottom: 1px solid #555;
+  border-bottom: 1px solid #555;
 }
 
 /* Main */
 main p {
-    font-size: 18px;
+  font-size: 18px;
 }
 
 main {
-    grid-column-start: main;
+  grid-column-start: main;
 }
 
+main h1, main h2, main h3, main h4, main h5, main h6 {
+  border-bottom: 1px solid #3f484d;
+  margin-bottom: 0;
+  margin-top: 20px;
+  margin-left: 0;
+  padding: 0;
+}
 
 /* Footer */
 footer p {
-    font-size: 16px;
+  font-size: 16px;
 }
 
 footer {
-    text-align: center;
+  text-align: center;
 }
-
 
 /* Other */
 .debug-border {
-    border: 1px solid red;
+  border: 1px solid red;
 }
+
+/*# sourceMappingURL=doc-styles.css.map */
