@@ -2,6 +2,7 @@
 layout: doc-layout.njk
 title: World Gen
 date: 2025-02-20 00:00:00 -5
+engineVersion: v0.1.0
 eleventyNavigation:
   key: World Gen
 ---
@@ -20,17 +21,37 @@ There is one constructor and two other functions for the base `WorldGen` class. 
 ### Constructor
 `WorldGen(int seed)`
 
+Arguments:
+
+`int seed`: The seed to use for generation.
+
 ### GenerateChunkData
 `virtual void GenerateChunkData(ChunkData& chunkData)`
+
+This function is responsible for setting all the blocks in the chunk data passed to it. By default, it loops through all the blocks and calls `GetBlock` with the world position of each block. This shouldn't need to be overridden unless you need highly specialized generation.
+
+Arguments:
+
+`ChunkData& chunkData`: A reference to the chunk data being generated.
 
 ### GetBlock
 `virtual uint16_t GetBlock(int x, int y, int z)`
 
-## Variables
-### Public
-#### `m_seed`
+This function decides what block to pick for the world position passed to it. By default, it simply returns 0 (air).
 
-### Private
+Arguments:
+
+`int x`: The world x position of the block being generated.
+
+`int y`: The world y position of the block being generated.
+
+`int z`: The world z position of the block being generated.
+
+Returns: `uint16_t`: The block ID of the block decided on by this function.
+
+## Public Variables
+### `m_seed`
+The seed used for world generation.
 
 ## Derived Classes
 - `NoiseWorldGen`
@@ -52,7 +73,8 @@ public:
             {
                 for (int z = 0; z < CHUNK_SIZE; z++)
                 {
-                    chunkData.m_voxels[i] = GetBlock(x + chunkData.m_offset.x, y + chunkData.m_offset.y, z + chunkData.m_offset.z);
+                    chunkData.m_voxels[i] = GetBlock(x + chunkData.m_offset.x, 
+                        y + chunkData.m_offset.y, z + chunkData.m_offset.z);
                     i++;
                 }
             }
