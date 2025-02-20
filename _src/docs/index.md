@@ -1,7 +1,7 @@
 ---
 layout: doc-layout.njk
 title: Getting Started
-date: git Last Modified
+date: 2025-02-20 00:00:00 -5
 eleventyNavigation:
   key: Getting Started
   order: -1

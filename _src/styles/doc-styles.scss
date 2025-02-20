@@ -48,6 +48,7 @@ header a {
 
 header ul {
     display: inline-block;
+    padding-left: 0;
 }
 
 header li {
@@ -82,22 +83,8 @@ header li {
 
 
 /* Site Sidebar */
-#site-nav .current {
-    background-color: base.$primary-ultradark;
-}
-
-#site-nav a {
-    text-decoration: none;
-    color: #71b2da;
-}
-
-#site-nav div:hover {
-    transition: .25s;
-}
-
-#site-nav div:hover {
-    background-color: base.$primary-ultradark-ohalf;
-    transition: .25s;
+#site-nav > ul {
+    padding-left: 0;
 }
 
 #site-nav {
@@ -107,12 +94,28 @@ header li {
     height: fit-content;
     max-height: 90vh;
     grid-column-start: site-nav;
-}
 
-#site-nav ul {
-    list-style-type: none;
-}
+    .current {
+        background-color: base.$primary-ultradark;
+    }
 
+    a {
+        text-decoration: none;
+        color: #71b2da;
+    }
+
+    div {
+        transition: .25s;
+    }
+    
+    div:hover {
+        background-color: base.$primary-ultradark-ohalf;
+        transition: .25s;
+    }
+    ul {
+        list-style-type: none;
+    }
+}
 
 /* Page Sidebar */
 #page-nav {
@@ -124,34 +127,37 @@ header li {
     grid-column-start: page-nav;
 }
 
-#page-nav ol {
-    margin-left: -20px;
-    margin-top: 5px;
+#page-nav nav > ol {
+    padding: 0;
 }
 
-#page-nav li {
-    color: #aaa;
-    margin-bottom: 5px;
+#page-nav {
+    ol {
+        margin-top: 5px;
+        list-style-type: none;
+    }
+    
+    li {
+        color: #aaa;
+        margin-bottom: 5px;
+    }
+    
+    a {
+        color: #eee;
+        text-decoration: none;
+    }
+
+    a:hover {
+        color: #fff;
+    }
+
+    h4 {
+        border-bottom: 1px solid #555;
+    }
 }
 
-#page-nav a {
-    color: #eee;
-    text-decoration: none;
-}
-
-#page-nav a:hover {
-    color: #fff;
-}
-
-#page-nav h4 {
-    border-bottom: 1px solid #555;
-}
 
 /* Main */
-main p {
-    font-size: 18px;
-}
-
 main {
     grid-column-start: main;
 }
@@ -163,6 +169,10 @@ main {
         margin-top: 20px;
         margin-left: 0;
         padding: 0;
+    }
+    
+    p {
+        font-size: 16px;
     }
 }
 
