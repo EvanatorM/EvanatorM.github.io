@@ -36,14 +36,24 @@
 <p>There is one constructor and two other functions for the base <code>WorldGen</code> class. These can be overridden to customize world generation.</p>
 <h3 id="constructor" tabindex="-1">Constructor</h3>
 <p><code>WorldGen(int seed)</code></p>
+<p>Arguments:</p>
+<p><code>int seed</code>: The seed to use for generation.</p>
 <h3 id="generatechunkdata" tabindex="-1">GenerateChunkData</h3>
 <p><code>virtual void GenerateChunkData(ChunkData&amp; chunkData)</code></p>
+<p>This function is responsible for setting all the blocks in the chunk data passed to it. By default, it loops through all the blocks and calls <code>GetBlock</code> with the world position of each block. This shouldn’t need to be overridden unless you need highly specialized generation.</p>
+<p>Arguments:</p>
+<p><code>ChunkData&amp; chunkData</code>: A reference to the chunk data being generated.</p>
 <h3 id="getblock" tabindex="-1">GetBlock</h3>
 <p><code>virtual uint16_t GetBlock(int x, int y, int z)</code></p>
-<h2 id="variables" tabindex="-1">Variables</h2>
-<h3 id="public" tabindex="-1">Public</h3>
-<h4 id="m_seed" tabindex="-1"><code>m_seed</code></h4>
-<h3 id="private" tabindex="-1">Private</h3>
+<p>This function decides what block to pick for the world position passed to it. By default, it simply returns 0 (air).</p>
+<p>Arguments:</p>
+<p><code>int x</code>: The world x position of the block being generated.</p>
+<p><code>int y</code>: The world y position of the block being generated.</p>
+<p><code>int z</code>: The world z position of the block being generated.</p>
+<p>Returns: <code>uint16_t</code>: The block ID of the block decided on by this function.</p>
+<h2 id="public-variables" tabindex="-1">Public Variables</h2>
+<h3 id="m_seed" tabindex="-1"><code>m_seed</code></h3>
+<p>The seed used for world generation.</p>
 <h2 id="derived-classes" tabindex="-1">Derived Classes</h2>
 <ul>
 <li><code>NoiseWorldGen</code></li>
@@ -64,7 +74,8 @@
             <span class="token punctuation">{</span>
                 <span class="token keyword keyword-for">for</span> <span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> z <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> z <span class="token operator">&lt;</span> CHUNK_SIZE<span class="token punctuation">;</span> z<span class="token operator">++</span><span class="token punctuation">)</span>
                 <span class="token punctuation">{</span>
-                    chunkData<span class="token punctuation">.</span>m_voxels<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">GetBlock</span><span class="token punctuation">(</span>x <span class="token operator">+</span> chunkData<span class="token punctuation">.</span>m_offset<span class="token punctuation">.</span>x<span class="token punctuation">,</span> y <span class="token operator">+</span> chunkData<span class="token punctuation">.</span>m_offset<span class="token punctuation">.</span>y<span class="token punctuation">,</span> z <span class="token operator">+</span> chunkData<span class="token punctuation">.</span>m_offset<span class="token punctuation">.</span>z<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    chunkData<span class="token punctuation">.</span>m_voxels<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">GetBlock</span><span class="token punctuation">(</span>x <span class="token operator">+</span> chunkData<span class="token punctuation">.</span>m_offset<span class="token punctuation">.</span>x<span class="token punctuation">,</span> 
+                        y <span class="token operator">+</span> chunkData<span class="token punctuation">.</span>m_offset<span class="token punctuation">.</span>y<span class="token punctuation">,</span> z <span class="token operator">+</span> chunkData<span class="token punctuation">.</span>m_offset<span class="token punctuation">.</span>z<span class="token punctuation">)</span><span class="token punctuation">;</span>
                     i<span class="token operator">++</span><span class="token punctuation">;</span>
                 <span class="token punctuation">}</span>
             <span class="token punctuation">}</span>
@@ -108,20 +119,11 @@
                 </ol>
             		</li>
 
-                    <li><a href="#variables">Variables</a>
-            
-                <ol>
-                    
-                    <li><a href="#public">Public</a>
+                    <li><a href="#public-variables">Public Variables</a>
             
                 <ol>
                     
                     <li><a href="#m_seed">m_seed</a>
-            		</li>
-                </ol>
-            		</li>
-
-                    <li><a href="#private">Private</a>
             		</li>
                 </ol>
             		</li>
@@ -139,6 +141,7 @@
     </div>
     <footer>
         <p>Last modified: 2/20/2025</p>
+        <p>WillowVox Engine v0.1.0</p>
     </footer>
 </body>
 </html>

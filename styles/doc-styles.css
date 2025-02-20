@@ -56,7 +56,7 @@ header li {
   margin-top: 70px;
   min-height: calc(90vh - 50px);
   display: grid;
-  grid-template-columns: 1fr [site-nav] 1fr 20px [main] 4fr 20px [page-nav] 1fr 1fr;
+  grid-template-columns: 1fr [site-nav] minmax(0, 1fr) 20px [main] minmax(0, 4fr) 20px [page-nav] minmax(0, 1fr) 1fr;
 }
 
 @media only screen and (max-width: 600px) {
@@ -71,7 +71,7 @@ header li {
     margin-top: 70px;
     min-height: calc(90vh - 50px);
     display: grid;
-    grid-template-columns: [site-nav] 1fr 20px [main] 4fr 20px [page-nav] 1fr;
+    grid-template-columns: [site-nav] minmax(0, 1fr) 20px [main] minmax(0, 4fr) 20px [page-nav] minmax(0, 1fr);
   }
 }
 /* Site Sidebar */
@@ -141,12 +141,13 @@ header li {
 /* Main */
 main {
   grid-column-start: main;
+  grid-column-end: span 1;
 }
 
 main h1, main h2, main h3, main h4, main h5, main h6 {
   border-bottom: 1px solid #3f484d;
   margin-bottom: 0;
-  margin-top: 20px;
+  margin-top: 40px;
   margin-left: 0;
   padding: 0;
 }
@@ -157,10 +158,12 @@ main p {
 /* Footer */
 footer p {
   font-size: 16px;
+  margin: 0;
 }
 
 footer {
   text-align: center;
+  margin-top: 20px;
 }
 
 /* Other */
