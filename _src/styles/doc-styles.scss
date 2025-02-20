@@ -1,11 +1,8 @@
+@use 'base';
+
 /* Global */
 h1, h2, h3, h4, h5, h6 {
     font-weight: normal;
-    border-bottom: 1px solid #3f484d;
-    margin-bottom: 0;
-    margin-top: 20px;
-    margin-left: 0;
-    padding: 0;
 }
 
 :target {
@@ -13,8 +10,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 html {
-    background-color: #242527;
-    color: #eee;
+    background-color: base.$bg-primary;
+    color: base.$text-primary;
     scroll-behavior: smooth;
 }
 
@@ -23,18 +20,19 @@ html {
 header {
     position: fixed;
     width: 100%;
-    background-color: #2276aa;
+    background-color: base.$primary-dark;
     top: 0%;
     left: 0%;
     display: flex;
     align-items: center;
 }
 
-header h1, header h2 {
-    color: white;
-    margin: 5px 0 5px 10px;
-    display: inline-block;
-
+header {
+    h1, h2 {
+        color: base.$text-primary-light;
+        margin: 5px 0 5px 10px;
+        display: inline-block;
+    }
 }
 
 header a {
@@ -85,7 +83,7 @@ header li {
 
 /* Site Sidebar */
 #site-nav .current {
-    background-color: #0d4466;
+    background-color: base.$primary-ultradark;
 }
 
 #site-nav a {
@@ -98,7 +96,7 @@ header li {
 }
 
 #site-nav div:hover {
-    background-color: #0d4466aa;
+    background-color: base.$primary-ultradark-ohalf;
     transition: .25s;
 }
 
@@ -156,6 +154,16 @@ main p {
 
 main {
     grid-column-start: main;
+}
+
+main {
+    h1, h2, h3, h4, h5, h6 {
+        border-bottom: 1px solid base.$bg-primary-light;
+        margin-bottom: 0;
+        margin-top: 20px;
+        margin-left: 0;
+        padding: 0;
+    }
 }
 
 

@@ -10,6 +10,10 @@ import eleventyNavigationPlugin from "@11ty/eleventy-navigation";
 import eleventyPrism from "./eleventy-prism.js";
 
 export default function (eleventyConfig) {
+	// Configuration
+	eleventyConfig.setInputDirectory("_src");
+	eleventyConfig.setTemplateFormats("html,md,11ty.jsx");
+
 	// We can add support for TypeScript too, at the same time:
 	eleventyConfig.addExtension(["11ty.jsx", "11ty.ts", "11ty.tsx"], {
 		key: "11ty.js",
@@ -36,11 +40,6 @@ export default function (eleventyConfig) {
 
 	eleventyConfig.addPlugin(eleventyPrism);
 
-	eleventyConfig.addPassthroughCopy("src/styles/global-styles.css");
-	eleventyConfig.addPassthroughCopy("src/styles/coming-soon-styles.css");
-	eleventyConfig.addPassthroughCopy("src/styles/doc-styles.css");
-	eleventyConfig.addPassthroughCopy("src/styles/code-styles.css");
-	eleventyConfig.addPassthroughCopy("src/img/logo.svg");
-	eleventyConfig.addPassthroughCopy("src/img/logo-voxel.svg");
+	eleventyConfig.addPassthroughCopy("_src/img");
 	eleventyConfig.addPassthroughCopy("CNAME");
 }
