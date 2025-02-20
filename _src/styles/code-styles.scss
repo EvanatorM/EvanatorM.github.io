@@ -36,7 +36,7 @@ code.language-cpp {
     color: #e3ffc2;
 }
 
-.keyword-int, .keyword-uint16_t {
+.keyword-int, .keyword-uint16_t, .keyword-bool {
     color: #84a1ff;
 }
 
@@ -46,4 +46,8 @@ code.language-cpp {
 
 .operator {
     color: #baf1ff;
+}
+
+.comment {
+    color: #6be289;
 }
