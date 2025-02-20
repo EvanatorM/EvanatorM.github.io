@@ -3,8 +3,11 @@ import { renderToStaticMarkup } from "react-dom/server";
 import pluginTOC  from "eleventy-plugin-nesting-toc";
 import markdownIt from "markdown-it";
 import markdownItAnchor from "markdown-it-anchor";
+import mardownItPrism from "markdown-it-prism";
 
 import eleventyNavigationPlugin from "@11ty/eleventy-navigation";
+
+import eleventyPrism from "./eleventy-prism.js";
 
 export default function (eleventyConfig) {
 	// We can add support for TypeScript too, at the same time:
@@ -26,10 +29,12 @@ export default function (eleventyConfig) {
 			html: true,
 			linkify: true,
 			typographer: true,
-		}).use(markdownItAnchor, {})
+		}).use(markdownItAnchor, {}).use(mardownItPrism)
 	);
 
 	eleventyConfig.addPlugin(eleventyNavigationPlugin);
+
+	eleventyConfig.addPlugin(eleventyPrism);
 
 	eleventyConfig.addPassthroughCopy("src/styles/global-styles.css");
 	eleventyConfig.addPassthroughCopy("src/styles/coming-soon-styles.css");
@@ -37,6 +42,5 @@ export default function (eleventyConfig) {
 	eleventyConfig.addPassthroughCopy("src/styles/code-styles.css");
 	eleventyConfig.addPassthroughCopy("src/img/logo.svg");
 	eleventyConfig.addPassthroughCopy("src/img/logo-voxel.svg");
-	eleventyConfig.addPassthroughCopy("src/scripts/prism.js");
 	eleventyConfig.addPassthroughCopy("CNAME");
 }

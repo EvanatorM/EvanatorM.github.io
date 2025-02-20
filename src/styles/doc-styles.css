@@ -1,11 +1,21 @@
 /* Global */
 h1, h2, h3, h4, h5, h6 {
     font-weight: normal;
+    border-bottom: 1px solid #3f484d;
+    margin-bottom: 0;
+    margin-top: 20px;
+    margin-left: 0;
+    padding: 0;
+}
+
+:target {
+    scroll-margin-top: 80px;
 }
 
 html {
     background-color: #242527;
     color: #eee;
+    scroll-behavior: smooth;
 }
 
 
@@ -20,7 +30,7 @@ header {
     align-items: center;
 }
 
-header h1, h2 {
+header h1, header h2 {
     color: white;
     margin: 5px 0 5px 10px;
     display: inline-block;
@@ -44,6 +54,32 @@ header ul {
 
 header li {
     display: inline-block;
+}
+
+
+/* Page */
+#page {
+    margin-top: 70px;
+    min-height: calc(90vh - 50px);
+    display: grid;
+    grid-template-columns: 1fr [site-nav] 1fr 20px [main] 4fr 20px [page-nav] 1fr 1fr;
+}
+
+@media only screen and (max-width: 600px) {
+    #page {
+        margin-top: 70px;
+        min-height: calc(90vh - 50px);
+        display: block;
+    }
+}
+
+@media only screen and (max-width: 1300px) {
+    #page {
+        margin-top: 70px;
+        min-height: calc(90vh - 50px);
+        display: grid;
+        grid-template-columns: [site-nav] 1fr 20px [main] 4fr 20px [page-nav] 1fr;
+    }
 }
 
 
@@ -120,13 +156,6 @@ main p {
 
 main {
     grid-column-start: main;
-}
-
-#page {
-    margin-top: 70px;
-    min-height: calc(90vh - 50px);
-    display: grid;
-    grid-template-columns: [site-nav] 1fr 20px [main] 4fr 20px [page-nav] 1fr;
 }
 
 

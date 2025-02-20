@@ -1,14 +1,13 @@
 ---
-tags: doc
 layout: doc-layout.njk
-title: Docs Home
+title: Getting Started
 date: git Last Modified
 eleventyNavigation:
-  key: Docs Home
+  key: Getting Started
   order: -1
 ---
 
-# Welcome to the docs!
+# Getting Started
 
 ```cpp
 int main()
