@@ -24,10 +24,103 @@
             <ul><li>
             <a  href="/docs/"><div >Getting Started</div></a></li><li>
             <a  href="/docs/world-gen/"><div >World Gen</div></a><ul><li>
+            <a  href="/docs/world-gen/noise-world-gen/"><div >Noise World Gen</div></a></li><li>
             <a  href="/docs/world-gen/terrain-gen/"><div  class="current">Terrain Gen</div></a></li></ul></li></ul>
         </div>
         <main>
-            <h1 id="terrain-gen" tabindex="-1">Terrain Gen</h1>
+            <h1 id="world-generation" tabindex="-1">World Generation</h1>
+<p>Generating terrain is an essential feature of any voxel game. WillowVox Engine provides a few world generation classes to help you get started.</p>
+<p><code>WorldGen</code> is the base world generation class which every other world generation class must derive from. This page will cover the base <code>WorldGen</code> class, but I would highly recommend checking out the other world generation classes.</p>
+<h2 id="include" tabindex="-1">Include</h2>
+<p>To include <code>WorldGen</code>, use <code>#include &lt;WillowVox/world/WorldGen.h&gt;</code></p>
+<h2 id="functions" tabindex="-1">Functions</h2>
+<p>There is one constructor and two other functions for the base <code>WorldGen</code> class. These can be overridden to customize world generation.</p>
+<h3 id="constructor" tabindex="-1">Constructor</h3>
+<p><code>WorldGen(int seed)</code></p>
+<p>Arguments:</p>
+<p><code>int seed</code>: The seed to use for generation.</p>
+<h3 id="generatechunkdata" tabindex="-1">GenerateChunkData</h3>
+<p><code>virtual void GenerateChunkData(ChunkData&amp; chunkData)</code></p>
+<p>This function is responsible for setting all the blocks in the chunk data passed to it. By default, it loops through all the blocks and calls <code>GetBlock</code> with the world position of each block. This shouldn’t need to be overridden unless you need highly specialized generation.</p>
+<p>Arguments:</p>
+<p><code>ChunkData&amp; chunkData</code>: A reference to the chunk data being generated.</p>
+<h3 id="getblock" tabindex="-1">GetBlock</h3>
+<p><code>virtual uint16_t GetBlock(int x, int y, int z)</code></p>
+<p>This function decides what block to pick for the world position passed to it. By default, it simply returns 0 (air).</p>
+<p>Arguments:</p>
+<p><code>int x</code>: The world x position of the block being generated.</p>
+<p><code>int y</code>: The world y position of the block being generated.</p>
+<p><code>int z</code>: The world z position of the block being generated.</p>
+<p>Returns: <code>uint16_t</code>: The block ID of the block decided on by this function.</p>
+<h2 id="public-variables" tabindex="-1">Public Variables</h2>
+<h3 id="m_seed" tabindex="-1"><code>m_seed</code></h3>
+<p>The seed used for world generation.</p>
+<h2 id="derived-classes" tabindex="-1">Derived Classes</h2>
+<ul>
+<li><code>NoiseWorldGen</code></li>
+<li><code>TerrainGen</code></li>
+</ul>
+<h2 id="header-file-code" tabindex="-1">Header File Code</h2>
+<pre class="language-cpp"><code class="language-cpp"><span class="token keyword keyword-class">class</span> <span class="token class-name">WILLOWVOX_API</span> TerrainGen <span class="token operator">:</span> <span class="token keyword keyword-public">public</span> WorldGen
+<span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+    <span class="token function">TerrainGen</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> seed<span class="token punctuation">,</span> NoiseSettings2D<span class="token operator">*</span> surfaceNoiseSettings<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> surfaceNoiseLayers<span class="token punctuation">,</span> CaveNoiseSettings<span class="token operator">*</span> caveNoiseSettings<span class="token punctuation">,</span> 
+        <span class="token keyword keyword-int">int</span> caveNoiseLayers<span class="token punctuation">,</span> OreNoiseSettings<span class="token operator">*</span> oreNoiseSettings<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> oreNoiseLayers<span class="token punctuation">,</span>
+        SurfaceFeature<span class="token operator">*</span> surfaceFeatures<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> surfaceFeatureCount<span class="token punctuation">)</span>
+        
+        <span class="token operator">:</span> <span class="token function">WorldGen</span><span class="token punctuation">(</span>seed<span class="token punctuation">)</span><span class="token punctuation">,</span> 
+        <span class="token function">m_surfaceNoiseSettings</span><span class="token punctuation">(</span>surfaceNoiseSettings<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">m_surfaceNoiseLayers</span><span class="token punctuation">(</span>surfaceNoiseLayers<span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token function">m_caveNoiseSettings</span><span class="token punctuation">(</span>caveNoiseSettings<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">m_caveNoiseLayers</span><span class="token punctuation">(</span>caveNoiseLayers<span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token function">m_oreNoiseSettings</span><span class="token punctuation">(</span>oreNoiseSettings<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">m_oreNoiseLayers</span><span class="token punctuation">(</span>oreNoiseLayers<span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token function">m_surfaceFeatures</span><span class="token punctuation">(</span>surfaceFeatures<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">m_surfaceFeatureCount</span><span class="token punctuation">(</span>surfaceFeatureCount<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+    <span class="token keyword keyword-void">void</span> <span class="token function">GenerateChunkData</span><span class="token punctuation">(</span>ChunkData<span class="token operator">&amp;</span> chunkData<span class="token punctuation">)</span> <span class="token keyword keyword-override">override</span><span class="token punctuation">;</span>
+    <span class="token comment">// === Generation Steps ===</span>
+    <span class="token comment">/* These exist so that developers can change these behaviors
+        without having to remake the whole GenerateChunkData function */</span>
+    <span class="token keyword keyword-virtual">virtual</span> <span class="token keyword keyword-inline">inline</span> <span class="token keyword keyword-void">void</span> <span class="token function">GenerateChunkBlocks</span><span class="token punctuation">(</span>ChunkData<span class="token operator">&amp;</span> chunkData<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-virtual">virtual</span> <span class="token keyword keyword-inline">inline</span> <span class="token keyword keyword-void">void</span> <span class="token function">GenerateSurfaceFeatures</span><span class="token punctuation">(</span>ChunkData<span class="token operator">&amp;</span> chunkData<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// ========================</span>
+
+    <span class="token keyword keyword-uint16_t">uint16_t</span> <span class="token function">GetBlock</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> x<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> y<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> z<span class="token punctuation">)</span> <span class="token keyword keyword-override">override</span><span class="token punctuation">;</span>
+    <span class="token comment">// === Block Picking Functions ===</span>
+    <span class="token comment">/* These exist so that developers can change these behaviors
+        without having to remake the whole GetBlock function */</span>
+
+    <span class="token comment">// GetSkyBlock called when block is above the surface (good to override for adding water)</span>
+    <span class="token keyword keyword-virtual">virtual</span> <span class="token keyword keyword-inline">inline</span> <span class="token keyword keyword-uint16_t">uint16_t</span> <span class="token function">GetSkyBlock</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> x<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> y<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> z<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> surfaceBlock<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// GetGroundBlock called when block is solid (not cave or ore)</span>
+    <span class="token keyword keyword-virtual">virtual</span> <span class="token keyword keyword-inline">inline</span> <span class="token keyword keyword-uint16_t">uint16_t</span> <span class="token function">GetGroundBlock</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> x<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> y<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> z<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> surfaceBlock<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// GetCaveBlock called when block is below the sky but is a cave</span>
+    <span class="token keyword keyword-virtual">virtual</span> <span class="token keyword keyword-inline">inline</span> <span class="token keyword keyword-uint16_t">uint16_t</span> <span class="token function">GetCaveBlock</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> x<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> y<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> z<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> surfaceBlock<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// GetOreBlock checks to see if the block is an ore</span>
+    <span class="token keyword keyword-virtual">virtual</span> <span class="token keyword keyword-inline">inline</span> <span class="token keyword keyword-uint16_t">uint16_t</span> <span class="token function">GetOreBlock</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> x<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> y<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> z<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> surfaceBlock<span class="token punctuation">,</span> <span class="token keyword keyword-uint16_t">uint16_t</span> block<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Checks if block is cave using cave noise settings</span>
+    <span class="token keyword keyword-virtual">virtual</span> <span class="token keyword keyword-inline">inline</span> <span class="token keyword keyword-bool">bool</span> <span class="token function">IsCave</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> x<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> y<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> z<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> surfaceBlock<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// Checks to see if the block is an ore and returns the type if so. Returns 0 if not.</span>
+    <span class="token keyword keyword-virtual">virtual</span> <span class="token keyword keyword-inline">inline</span> <span class="token keyword keyword-uint16_t">uint16_t</span> <span class="token function">IsOre</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> x<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> y<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> z<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> surfaceBlock<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// Gets the block that the surface is on</span>
+    <span class="token keyword keyword-virtual">virtual</span> <span class="token keyword keyword-inline">inline</span> <span class="token keyword keyword-int">int</span> <span class="token function">GetSurfaceBlock</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> x<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> z<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// ===============================</span>
+
+    <span class="token comment">// === Surface Feature Placement ===</span>
+    <span class="token comment">/* These exist so that developers can change these behaviors
+        without having to remake the whole GenerateSurfaceFeatures function */</span>
+
+    <span class="token comment">// Override to change the conditions of surface feature placement</span>
+    <span class="token comment">// Base function checks if it is a cave or not</span>
+    <span class="token keyword keyword-virtual">virtual</span> <span class="token keyword keyword-inline">inline</span> <span class="token keyword keyword-bool">bool</span> <span class="token function">IsValidSurfaceFeaturePlacement</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> x<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> y<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> z<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> surfaceBlock<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// =================================</span>
+
+    NoiseSettings2D<span class="token operator">*</span> m_surfaceNoiseSettings<span class="token punctuation">;</span>
+    CaveNoiseSettings<span class="token operator">*</span> m_caveNoiseSettings<span class="token punctuation">;</span>
+    OreNoiseSettings<span class="token operator">*</span> m_oreNoiseSettings<span class="token punctuation">;</span>
+    <span class="token keyword keyword-int">int</span> m_surfaceNoiseLayers<span class="token punctuation">,</span> m_caveNoiseLayers<span class="token punctuation">,</span> m_oreNoiseLayers<span class="token punctuation">;</span>
+    SurfaceFeature<span class="token operator">*</span> m_surfaceFeatures<span class="token punctuation">;</span>
+    <span class="token keyword keyword-int">int</span> m_surfaceFeatureCount<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
 
         </main>
         <div id="page-nav">
@@ -35,7 +128,43 @@
             <nav class="toc">
                 <ol>
                     
-                    <li><a href="#terrain-gen">Terrain Gen</a>
+                    <li><a href="#world-generation">World Generation</a>
+            
+                <ol>
+                    
+                    <li><a href="#include">Include</a>
+            		</li>
+
+                    <li><a href="#functions">Functions</a>
+            
+                <ol>
+                    
+                    <li><a href="#constructor">Constructor</a>
+            		</li>
+
+                    <li><a href="#generatechunkdata">GenerateChunkData</a>
+            		</li>
+
+                    <li><a href="#getblock">GetBlock</a>
+            		</li>
+                </ol>
+            		</li>
+
+                    <li><a href="#public-variables">Public Variables</a>
+            
+                <ol>
+                    
+                    <li><a href="#m_seed">m_seed</a>
+            		</li>
+                </ol>
+            		</li>
+
+                    <li><a href="#derived-classes">Derived Classes</a>
+            		</li>
+
+                    <li><a href="#header-file-code">Header File Code</a>
+            		</li>
+                </ol>
             		</li>
                 </ol>
             </nav>
