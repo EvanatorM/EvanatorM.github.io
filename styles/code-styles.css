@@ -1,3 +1,4 @@
+/* SCSS HEX */
 pre {
   background-color: #151516;
   font-size: 14px;
@@ -8,6 +9,18 @@ pre {
   max-height: 500px;
   border-radius: 10px;
   overflow: auto;
+}
+
+code {
+  color: #df97a3;
+  font-size: 16px;
+  background-color: rgba(21, 21, 22, 0.6666666667);
+  border-radius: 5px;
+  padding: 1px 3px 1px 3px;
+}
+
+code.language-cpp {
+  color: #eee;
 }
 
 .keyword {
@@ -22,8 +35,16 @@ pre {
   color: #e3ffc2;
 }
 
-.keyword-int {
-  color: #7979ff;
+.keyword-int, .keyword-uint16_t {
+  color: #84a1ff;
+}
+
+.class-name {
+  color: #b3ffb3;
+}
+
+.operator {
+  color: #baf1ff;
 }
 
 /*# sourceMappingURL=code-styles.css.map */

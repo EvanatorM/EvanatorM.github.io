@@ -1,0 +1,144 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World Gen</title>
+    <link rel="stylesheet" href="/styles/doc-styles.css">
+    <link rel="stylesheet" href="/styles/code-styles.css">
+    <link rel="stylesheet" href="/styles/global-styles.css">
+    <link rel="icon" type="image/x-icon" href="/img/logo-voxel.svg">
+</head>
+<body>
+    <header>
+        <a href="/" id="home-link"><img src="/img/logo.svg" alt="logo" width="50"> <h1>WillowVox Engine</h2></a>
+        <h2>
+        World Gen</h2>
+    </header>
+    <div id="page">
+        <div id="site-nav">
+            
+            
+
+            <ul><li>
+            <a  href="/docs/"><div >Getting Started</div></a></li><li>
+            <a  href="/docs/world-gen/"><div  class="current">World Gen</div></a><ul><li>
+            <a  href="/docs/world-gen/terrain-gen/"><div >Terrain Gen</div></a></li></ul></li></ul>
+        </div>
+        <main>
+            <h1 id="world-generation" tabindex="-1">World Generation</h1>
+<p>Generating terrain is an essential feature of any voxel game. WillowVox Engine provides a few world generation classes to help you get started.</p>
+<p><code>WorldGen</code> is the base world generation class which every other world generation class must derive from. This page will cover the base <code>WorldGen</code> class, but I would highly recommend checking out the other world generation classes.</p>
+<h2 id="include" tabindex="-1">Include</h2>
+<p>To include <code>WorldGen</code>, use <code>#include &lt;WillowVox/world/WorldGen.h&gt;</code></p>
+<h2 id="functions" tabindex="-1">Functions</h2>
+<p>There is one constructor and two other functions for the base <code>WorldGen</code> class. These can be overridden to customize world generation.</p>
+<h3 id="constructor" tabindex="-1">Constructor</h3>
+<p><code>WorldGen(int seed)</code></p>
+<h3 id="generatechunkdata" tabindex="-1">GenerateChunkData</h3>
+<p><code>virtual void GenerateChunkData(ChunkData&amp; chunkData)</code></p>
+<h3 id="getblock" tabindex="-1">GetBlock</h3>
+<p><code>virtual uint16_t GetBlock(int x, int y, int z)</code></p>
+<h2 id="variables" tabindex="-1">Variables</h2>
+<h3 id="public" tabindex="-1">Public</h3>
+<h4 id="m_seed" tabindex="-1"><code>m_seed</code></h4>
+<h3 id="private" tabindex="-1">Private</h3>
+<h2 id="derived-classes" tabindex="-1">Derived Classes</h2>
+<ul>
+<li><code>NoiseWorldGen</code></li>
+<li><code>TerrainGen</code></li>
+</ul>
+<h2 id="header-file-code" tabindex="-1">Header File Code</h2>
+<pre class="language-cpp"><code class="language-cpp"><span class="token keyword keyword-class">class</span> <span class="token class-name">WILLOWVOX_API</span> WorldGen
+<span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+    <span class="token function">WorldGen</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> seed<span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token function">m_seed</span><span class="token punctuation">(</span>seed<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+    <span class="token keyword keyword-virtual">virtual</span> <span class="token keyword keyword-void">void</span> <span class="token function">GenerateChunkData</span><span class="token punctuation">(</span>ChunkData<span class="token operator">&amp;</span> chunkData<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword keyword-int">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword keyword-for">for</span> <span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> x <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> x <span class="token operator">&lt;</span> CHUNK_SIZE<span class="token punctuation">;</span> x<span class="token operator">++</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword keyword-for">for</span> <span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> y <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> y <span class="token operator">&lt;</span> CHUNK_SIZE<span class="token punctuation">;</span> y<span class="token operator">++</span><span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                <span class="token keyword keyword-for">for</span> <span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> z <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> z <span class="token operator">&lt;</span> CHUNK_SIZE<span class="token punctuation">;</span> z<span class="token operator">++</span><span class="token punctuation">)</span>
+                <span class="token punctuation">{</span>
+                    chunkData<span class="token punctuation">.</span>m_voxels<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">GetBlock</span><span class="token punctuation">(</span>x <span class="token operator">+</span> chunkData<span class="token punctuation">.</span>m_offset<span class="token punctuation">.</span>x<span class="token punctuation">,</span> y <span class="token operator">+</span> chunkData<span class="token punctuation">.</span>m_offset<span class="token punctuation">.</span>y<span class="token punctuation">,</span> z <span class="token operator">+</span> chunkData<span class="token punctuation">.</span>m_offset<span class="token punctuation">.</span>z<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    i<span class="token operator">++</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword keyword-virtual">virtual</span> <span class="token keyword keyword-uint16_t">uint16_t</span> <span class="token function">GetBlock</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> x<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> y<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> z<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword keyword-int">int</span> m_seed<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+
+        </main>
+        <div id="page-nav">
+            <h4>On This Page</h4>
+            <nav class="toc">
+                <ol>
+                    
+                    <li><a href="#world-generation">World Generation</a>
+            
+                <ol>
+                    
+                    <li><a href="#include">Include</a>
+            		</li>
+
+                    <li><a href="#functions">Functions</a>
+            
+                <ol>
+                    
+                    <li><a href="#constructor">Constructor</a>
+            		</li>
+
+                    <li><a href="#generatechunkdata">GenerateChunkData</a>
+            		</li>
+
+                    <li><a href="#getblock">GetBlock</a>
+            		</li>
+                </ol>
+            		</li>
+
+                    <li><a href="#variables">Variables</a>
+            
+                <ol>
+                    
+                    <li><a href="#public">Public</a>
+            
+                <ol>
+                    
+                    <li><a href="#m_seed">m_seed</a>
+            		</li>
+                </ol>
+            		</li>
+
+                    <li><a href="#private">Private</a>
+            		</li>
+                </ol>
+            		</li>
+
+                    <li><a href="#derived-classes">Derived Classes</a>
+            		</li>
+
+                    <li><a href="#header-file-code">Header File Code</a>
+            		</li>
+                </ol>
+            		</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <footer>
+        <p>Last modified: 2/20/2025</p>
+    </footer>
+</body>
+</html>
